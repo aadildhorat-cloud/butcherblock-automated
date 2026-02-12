@@ -45,24 +45,24 @@ itemsEl.innerHTML = '';
 this.items.forEach(item => {
 const div = document.createElement('div');
 div.className = 'cart-item';
-div.innerHTML = \`
-<img src="\${item.image}" style="width:60px;height:60px;object-fit:cover;">
+div.innerHTML = `
+<img src="${item.image}" style="width:60px;height:60px;object-fit:cover;">
 <div class="cart-item-details">
-<div class="cart-item-name">\${item.name}</div>
-<div class="cart-item-price">\${item.price === 0 ? 'Call for Quote' : 'R'+(item.price * item.quantity).toFixed(2)}</div>
+<div class="cart-item-name">${item.name}</div>
+<div class="cart-item-price">${item.price === 0 ? 'Call for Quote' : 'R'+(item.price * item.quantity).toFixed(2)}</div>
 <div class="cart-item-quantity">
-<button onclick="cart.updateQuantity('\${item.id}', -1)">-</button>
-<span>\${item.quantity}</span>
-<button onclick="cart.updateQuantity('\${item.id}', 1)">+</button>
+<button onclick="cart.updateQuantity('${item.id}', -1)">-</button>
+<span>${item.quantity}</span>
+<button onclick="cart.updateQuantity('${item.id}', 1)">+</button>
 </div>
 </div>
-<button onclick="cart.removeItem('\${item.id}')"><i class="fas fa-trash"></i></button>
-\`;
+<button onclick="cart.removeItem('${item.id}')"><i class="fas fa-trash"></i></button>
+`;
 itemsEl.appendChild(div);
 });
 }
 }
-if (totalEl) totalEl.textContent = \`Total: R\${this.calculateTotal()}\`;
+if (totalEl) totalEl.textContent = `Total: R${this.calculateTotal()}`;
 }
 };
 
@@ -97,12 +97,12 @@ if (cart.items.length === 0) {
 alert("Your cart is empty!");
 return;
 }
-let msg = "Hi! I'd like to place an order from Butcher Block:\\n";
+let msg = "Hi! I'd like to place an order from Butcher Block:\n";
 cart.items.forEach(item => {
-msg += \`• \${item.name} x\${item.quantity} — \${item.price === 0 ? 'Call for Quote' : 'R'+(item.price * item.quantity).toFixed(2)}\\n\`;
+msg += `• ${item.name} x${item.quantity} — ${item.price === 0 ? 'Call for Quote' : 'R'+(item.price * item.quantity).toFixed(2)}\n`;
 });
-msg += \`\\nTotal: R\${cart.calculateTotal()}\\nThank you!\`;
-const url = \`https://wa.me/27615023930?text=\${encodeURIComponent(msg)}\`;
+msg += `\nTotal: R${cart.calculateTotal()}\nThank you!`;
+const url = `https://wa.me/27615023930?text=${encodeURIComponent(msg)}`;
 window.open(url, '_blank');
 }
 
